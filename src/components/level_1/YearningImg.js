@@ -2,20 +2,37 @@ import {useEffect} from "react";
 
 export default function YearningImg() {
 
-    const players = ["may", "kein", "kain", "radi"];
-    const callings = [5, 10, 1, 3];
-    const poto = [["may", "kein", "kain", "radi"],["may", "kein", "brin", "deny"], ["kon", "kain", "may", "coni"]];
+    const name = ["may", "kein", "kain", "radi"];
+    const yearning = [5, 10, 1, 3];
+    const photo = [["may", "kein", "kain", "radi"],["may", "kein", "brin", "deny"], ["kon", "kain", "may", "coni"]];
 
 
     useEffect(() => {
-        solution(players, callings, poto);
+        solution(name, yearning, photo);
     }, []);
 
-    function solution(players, callings, poto) {
+    function solution(name, yearning, photo) {
 
         let result = [];
+        const playerCallingsMaping = new Map(
+            name.map((tagetName, index) => [tagetName, yearning[index]])
+        )
+        console.log(playerCallingsMaping);
 
+        photo.forEach((nthPhoto, index) => {
+            let score = null;
+            nthPhoto.forEach((nthPhotoName, index) => {
+                const cheackName = playerCallingsMaping.get(nthPhotoName);
+                if(cheackName) {
+                    score += cheackName;
+                }else {
+                    score += 0;
+                }
+            })
+            result.push(score);
 
+        })
+        console.log(result);
         if(result === [19, 15, 6]) {
             console.log("정답입니다.");
         }
@@ -25,7 +42,7 @@ export default function YearningImg() {
     return (
         <>
             <h1>
-                달리기 경주
+                추억사진
             </h1>
 
             <h3>
