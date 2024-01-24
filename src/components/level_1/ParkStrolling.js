@@ -10,7 +10,28 @@ export default function ParkStrolling () {
 
     function solution(park, routes) {
 
+        const result = [];
 
+        let move = {
+            'N' : [0,-1],
+            'E' : [1,0],
+            'S' : [0,1],
+            'W' : [-1,0]
+        }
+
+        let start_point = [];
+
+        const max_X = park.length -1;
+        const max_Y = park[0].length -1 ;
+
+        for(let i =0; i <  max_X; i++){
+            for(let j =0; j <  max_Y; j++){
+                if(park[i][j] === "S" ){
+                    start_point = [i,j];
+                }
+            }
+        }
+        console.log(start_point);
     }
 
 
