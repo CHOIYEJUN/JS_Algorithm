@@ -1,8 +1,8 @@
 import {useEffect} from "react";
 
 export default function ParkStrolling () {
-    const park = ["SOO","OOO","OOO"];
-    const routes = ["E 2","S 2","W 1"];
+    const park = ["OOS", "OOO", "OOO"];
+    const routes = ["W 1"];
 
     useEffect(() => {
         solution(park, routes);
@@ -10,28 +10,54 @@ export default function ParkStrolling () {
 
     function solution(park, routes) {
 
-        const result = [];
-
         let move = {
-            'N' : [0,-1],
-            'E' : [1,0],
-            'S' : [0,1],
-            'W' : [-1,0]
+            'N' : [-1,0],
+            'E' : [0,1],
+            'S' : [1,0],
+            'W' : [0,-1]
         }
-
         let start_point = [];
 
         const max_X = park.length -1;
         const max_Y = park[0].length -1 ;
 
-        for(let i =0; i <  max_X; i++){
-            for(let j =0; j <  max_Y; j++){
+        // 스타트 포인트가 나옴...
+        for(let i =0; i <=  max_X; i++){
+            for(let j =0; j <=  max_Y; j++){
                 if(park[i][j] === "S" ){
                     start_point = [i,j];
                 }
             }
         }
+        routes.forEach((route) => {
+            // 구조분해 할당으로 방향과 움직이는 방향 만들어놓음.
+            let [dir, moving] = route.split(" ");
+            let [tempX, tempY] = [start_point[0], start_point[1]];
+            let movingTrue = true;
+
+            for(let i=0; i < Number(moving); i++){
+                tempX += move[dir][0];
+                tempY += move[dir][1];
+
+                if(tempX < 0 || tempX > max_X || tempY < 0 || tempY > max_Y) {
+                    movingTrue = false;
+                    break;
+                }
+
+                if( park[tempX][tempY] === "X") {
+                    movingTrue = false;
+                    break;
+                }
+            }
+
+            if(movingTrue) {
+                start_point =[tempX, tempY];
+            }
+        });
         console.log(start_point);
+        return start_point;
+
+
     }
 
 
