@@ -3,6 +3,7 @@ import MainPage from "./pages/MainPage";
 import RunningRace from "./components/level_1/RunningRace";
 import YearningImg from "./components/level_1/YearningImg";
 import ParkStrolling from "./components/level_1/ParkStrolling";
+import CleanDesktop from "./components/level_1/CleanDesktop";
 
 function App() {
   const router = createBrowserRouter([
@@ -24,6 +25,10 @@ function App() {
             {
                 path : "parkStroling",
                 element : <ParkStrolling />
+            },
+            {
+                path : "cleanDesktop",
+                element : <CleanDesktop />
             },
 
 
