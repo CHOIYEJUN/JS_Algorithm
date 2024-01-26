@@ -1,7 +1,7 @@
 import {useEffect} from "react";
 
 export default function CleanDesktop () {
-    const wallpaper = [".#...", "..#..", "...#."];
+    const wallpaper = 	["..", "#."];
 
 
     useEffect(() => {
@@ -12,7 +12,8 @@ export default function CleanDesktop () {
 
         // # 이 있는 좌표값을 찾기.
         // # 좌표를 모두 구하고, X 축이 가장 작은곳과 y 축의 가장 작은곳을 모서리로 x축이 가장 큰곳과 y 축이 가장 큰 곳을 다른 모서리로 해서 출력?.,.
-        let fileLocate = []
+        let fileLocate = [];
+        let result = [];
 
         let max_x = wallpaper.length -1;
         let max_y = wallpaper[0].length -1;
@@ -25,17 +26,34 @@ export default function CleanDesktop () {
         }
         console.log(fileLocate);
 
+        let minx = 999;
+        let miny = 999;
+        let maxX = 0;
+        let maxY = 0;
         // 가장 작은 x,y 좌표 찾기
+        fileLocate.forEach((loc) =>{
+            const tempX = loc[0];
+            const tempY = loc[1];
 
+            // 최대 최소를 따로따로 했어야 했음.. ㅠㅠ
+            if (minx > tempX) {
+                minx = tempX;
+            }
+            if (maxX < tempX) {
+                maxX = tempX;
+            }
 
+            if (miny > tempY) {
+                miny = tempY;
+            }
+            if (maxY < tempY) {
+                maxY = tempY;
+            }
+        })
 
-
-        // 가장 큰 x,y 좌표 찾기
-
-
-
-
-
+        result = [minx, miny, maxX+1, maxY+1];
+        console.log(result);
+        return result;
 
     }
 
