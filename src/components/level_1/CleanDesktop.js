@@ -51,6 +51,7 @@ export default function CleanDesktop () {
             }
         })
 
+        // 인덱스는 0부터 시작하니까 최대 인덱스값은 +1 해야해요
         result = [minx, miny, maxX+1, maxY+1];
         console.log(result);
         return result;
